@@ -1,5 +1,7 @@
 package ru.yandex.praktikum;
 
+import java.util.regex.Pattern;
+
 public class Account {
 
     private final String name;
@@ -9,28 +11,11 @@ public class Account {
     }
 
     public boolean checkNameToEmboss() {
-        if (name.length() < 3 || name.length() > 19) {
+        if (name == null) {
             return false;
-        } else {
-            if (countOfSpaces() != 1) {
-                return false;
-            } else {
-                return !isSpaceAtBeginningOrEnd();
-            }
         }
+        String regexp = "(?=^.{3,19}$)(^(\\S+)\\s(\\S+)$)";
+        return Pattern.matches(regexp, name);
     }
 
-    public int countOfSpaces() {
-        int count = 0;
-        for (int i = 0; i < name.length(); i++) {
-            if (Character.isWhitespace(name.charAt(i))) {
-                count++;
-            }
-        }
-        return count;
-    }
-
-    public boolean isSpaceAtBeginningOrEnd() {
-        return Character.isWhitespace(name.charAt(0)) || Character.isWhitespace(name.charAt(name.length() - 1));
-    }
 }

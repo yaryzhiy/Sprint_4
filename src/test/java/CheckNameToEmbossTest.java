@@ -1,8 +1,9 @@
-import io.qameta.allure.junit4.DisplayName;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import ru.yandex.praktikum.Account;
+
+import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
 
@@ -18,8 +19,8 @@ public class CheckNameToEmbossTest {
     }
 
     @Parameterized.Parameters
-    public static Object[][] getData() {
-        return new Object[][] {
+    public static Iterable<Object[]> getData() {
+        return Arrays.asList(new Object[][] {
                 {"", false},   //пустая строка
                 {"НУ", false},   //2 символа (значение около границы)
                 {"Н У", true},   //ГЗ - 3 символа
@@ -31,8 +32,9 @@ public class CheckNameToEmbossTest {
                 {"Наруто", false},   //количество пробелов - 0
                 {"Наруто Уд зумаки", false},   //количество пробелов - 2
                 {" Наруто", false},   //пробел в начале строки
-                {"Наруто ", false}   //пробел в конце строки
-        };
+                {"Наруто ", false},   //пробел в конце строки
+                {null, false}
+        });
     }
 
     @Test
