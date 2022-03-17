@@ -12,15 +12,15 @@ public class Account {
         if (name.length() < 3 || name.length() > 19) {
             return false;
         } else {
-            if (countOfSpaces(name) != 1) {
+            if (countOfSpaces() != 1) {
                 return false;
             } else {
-                return !isSpaceAtBeginningOrEnd(name);
+                return !isSpaceAtBeginningOrEnd();
             }
         }
     }
 
-    public int countOfSpaces(String name) {
+    public int countOfSpaces() {
         int count = 0;
         for (int i = 0; i < name.length(); i++) {
             if (Character.isWhitespace(name.charAt(i))) {
@@ -30,7 +30,7 @@ public class Account {
         return count;
     }
 
-    public boolean isSpaceAtBeginningOrEnd(String name) {
+    public boolean isSpaceAtBeginningOrEnd() {
         return Character.isWhitespace(name.charAt(0)) || Character.isWhitespace(name.charAt(name.length() - 1));
     }
 }
